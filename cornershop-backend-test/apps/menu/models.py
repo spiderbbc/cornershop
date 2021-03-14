@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime, time
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
@@ -23,6 +24,11 @@ class Menu(models.Model):
 	
 	def __str__(self):
 		return '{}: {}'.format(self.name,self.start_on)
+
+	def is_can_be_ordered(self):
+		today_date = datetime.now()
+		today_time = time(today_date.hour, today_date.minute, today_date.second)
+		return  True if today_time.hour <= 10 and today_time.minute <= 60 else False	
 		
 class Option(models.Model):
 	"""docstring for Option"""
