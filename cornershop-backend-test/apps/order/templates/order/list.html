@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Order Lists
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<table class="table table-bordered">
+			        <thead>
+			          <tr>
+			          	<th scope="col">Fecha</th>
+			          	<th scope="col">N order</th>
+			          	<th scope="col">N Rut</th>
+			            <th scope="col">Nombre</th>
+			            <th scope="col">Menu</th>
+			            <th scope="col">Option</th>
+			            <th scope="col">Actions</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			        	{% for order in orders %}
+			          <tr>
+				            <th scope="row">{{order.created}}</th>
+				            <td>{{order.id}}</td>
+				            <td>{{order.rut}}</td>
+				            <td>{{order.name}}</td>
+				            <td>{{order.option.menu.name}}</td>
+				            <td>{{order.option.description}}</td>
+				            <td>
+				            	<a class="btn btn-primary" href="{% url "order:order_view" order.id %}"><i class="far fa-eye"></i></a>
+			            	</td>
+			          </tr>
+			          {% endfor %}
+			        </tbody>
+	      		</table>
+    		</div>
+    	</div>
+	</div>  
+{% endblock %}
