@@ -21,5 +21,6 @@ urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('',include(('apps.menu.urls', 'menu'), namespace='menu')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('menu/',include(('apps.order.urls', 'order'), namespace='order')),
     #path("healthz", healthz, name="healthz"),
 ]

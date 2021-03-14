@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_extensions",
     "backend_test.utils",
-    "apps.menu"
+    "apps.menu",
+    "apps.order"
 ]
 
 MIDDLEWARE = [

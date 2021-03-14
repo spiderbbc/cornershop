@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Order
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    	<div class="row">
+			<div class="col-md-6">
+				{% if form.errors %}
+			    {% for field in form %}
+			        {% for error in field.errors %}
+			            <div class="alert alert-danger">
+			                <strong>{{ error|escape }}</strong>
+			            </div>
+			        {% endfor %}
+			    {% endfor %}
+			    {% for error in form.non_field_errors %}
+			        <div class="alert alert-danger">
+			            <strong>{{ error|escape }}</strong>
+			        </div>
+			    {% endfor %}
+			{% endif %}
+			</div>
+		</div>  
+		<div class="row">
+		    <div class="col-md-6">
+		    	<h3>{{menu.name}}</h3>
+		    	<p>Las Options son:</p>
+		    	<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">Option</th>
+				      <th scope="col">description</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	{% if menu.options.count %}
+				  		{% for option in menu.options.all %}
+						    <tr>
+						      <th scope="row">{{option.id}}</th>
+						      <td>{{option.description}}</td>
+						    </tr>
+				    	{% endfor %}
+				    {% endif %}
+				  </tbody>
+				</table>
+		    </div>
+		    <div class="col-md-6">
+		    	<form method="post" class="order-form">
+					{% csrf_token %}
+			        {{ form.as_p }}
+			        <p><input type="submit" value="Crear Order"></p>
+			        {% csrf_token %}
+			    </form>
+		    </div>
+		</div>
+	</div>  
+{% endblock %}

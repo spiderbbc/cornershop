@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Order
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<table class="table table-bordered">
+			        <thead>
+			          <tr>
+			          	<th scope="col">N order</th>
+			          	<th scope="col">Fecha</th>
+			            <th scope="col">Menu Name</th>
+			             <th scope="col">Option</th>
+			            {# <th scope="col">Menu Name</th> #}
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <tr>
+				            <th scope="row">{{order.id}}</th>
+				            <td>{{order.created}}</td>
+				            <td>{{order.option.menu.name}}</td>
+				            <td>{{order.option.description}}</td>
+				           {#  <td>{{order.option.menu.name}}</td> #}
+			          </tr>
+			        </tbody>
+	      		</table>
+    		</div>
+    	</div>
+	</div>  
+{% endblock %}
