@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = getenv("SECRET_KEY", default="###SECRET_KEY###")
 
-DEBUG = getenv("DEBUG", default=False, coalesce=bool)
+#DEBUG = getenv("DEBUG", default=False, coalesce=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_extensions",
     "backend_test.utils",
+    "apps.menu"
 ]
 
 MIDDLEWARE = [

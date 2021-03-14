@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block content %}
+	<div id="sidebar">
+        <h3>Menu's</h3>
+        <ul>
+        	<a href="{% url "menu:create" %}">Crear Menu</a>
+        </ul>
+    </div>
+    <div class="container">
+	<div class="row">
+	    <div class="col-12">
+	    	{% if menus %}
+
+	      <table class="table table-bordered">
+	        <thead>
+	          <tr>
+	          	<th scope="col">#</th>
+	            <th scope="col">Day</th>
+	            <th scope="col">Menu Name</th>
+	            <th scope="col">Author</th>
+	            <th scope="col">N Options</th>
+	            <th scope="col">Actions</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	{% for menu in menus %}
+	          <tr>
+	          		<th scope="row">{{forloop.counter}}</th>
+		            <th scope="row">{{menu.start_on}}</th>
+		            <td>{{menu.name}}</td>
+		            <td>{{menu.user.username}}</td>
+		            <td>{{menu.options.count}}</td>
+		            <td>
+		            	<a class="btn btn-primary" href="{% url "menu:view" menu.id %}"><i class="far fa-eye"></i></a>
+		              <a class="btn btn-success" href="{% url "menu:update" menu.id %}"><i class="fas fa-edit"></i></a>
+	            	</td>
+	          </tr>
+	          {% endfor %}
+	        </tbody>
+	      </table>
+	      {% else %}
+	      	<h3>No hay registros</h3>
+	      {% endif %}
+	    </div>
+	  </div>    
+	</div>  
+{% endblock %}
