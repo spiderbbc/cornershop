@@ -36,6 +36,8 @@ SERVER_URL = os.getenv("SERVER_URL", default="*")
 
 APPEND_SLASH = False
 
+LOGIN_REDIRECT_URL = '/'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -68,7 +70,7 @@ ROOT_URLCONF = "backend_test.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ['./templates',],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
