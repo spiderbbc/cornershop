@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Update Option
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h3>Update Option</h3>
+	</div>
+	<form action="." method="post" class="order-form">
+		{% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Update Option"></p>
+        {% csrf_token %}
+    </form>
+{% endblock %}
