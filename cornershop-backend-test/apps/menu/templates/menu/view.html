@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>{{menu.name}}</h3>
+				<p>{{menu.start_on}}</p>
+				<p>{{menu.uuid}}</p>
+				<a href="{% url "menu:option_create" menu.id %}" class="btn btn-primary">Agregar Opcion al Menu</a>
+				<a href="{% url "menu:index" %}" class="btn btn-primary">Lista Menu</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">description</th>
+				      <th scope="col">Actions</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	{% if menu.options.count %}
+				  		{% for option in menu.options.all %}
+						    <tr>
+						      <th scope="row">{{forloop.counter}}</th>
+						      <td>{{option.description}}</td>
+						      <td>
+				            	<a class="btn btn-primary" href="{% url "menu:option_update" option.id %}"><i class="far fa-edit"></i></a>
+				              	<a class="btn btn-danger" href="{% url "menu:option_delete" option.id %}"><i class="fas fa-trash"></i></a>
+			            	  </td>
+						    </tr>
+				    	{% endfor %}
+				    {% endif %}
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
