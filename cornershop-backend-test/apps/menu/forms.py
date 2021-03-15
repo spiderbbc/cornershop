@@ -13,7 +13,7 @@ class MenuCreateForm(forms.ModelForm):
 		return start_on
 	class Meta:
 		model = Menu
-		fields = ['name','send','start_on']	
+		fields = ['name','start_on']	
 		widgets = {
 		'start_on': forms.DateInput(format=('%Y-%m-%d'),
 			attrs = {'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),

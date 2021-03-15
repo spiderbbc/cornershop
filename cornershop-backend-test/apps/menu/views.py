@@ -2,11 +2,13 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Menu,Option
 from .forms import MenuCreateForm,OptionCreateForm
+from .tasks import reminders_menu
 # Create your views here.
 @login_required
 def menu_list(request):
 	menus = Menu.objects.filter()
 	return render(request,'menu/list.html',{'menus': menus})
+
 @login_required
 def menu_create(request):
 	if request.method == 'POST':
@@ -19,10 +21,12 @@ def menu_create(request):
 	else:
 		form = MenuCreateForm()
 	return render(request,'menu/create.html',{'form': form})
+
 @login_required
 def menu_view(request,menu_id):
 	menu = get_object_or_404(Menu, id = menu_id)
 	return render(request,'menu/view.html',{'menu': menu})
+
 @login_required
 def menu_update(request,menu_id):
 	menu = get_object_or_404(Menu, id = menu_id)
@@ -36,6 +40,12 @@ def menu_update(request,menu_id):
 	else:
 		context = {'form': form}
 	return render(request,'menu/update.html',{'form': form})		
+
+@login_required
+def menu_reminders(request,menu_id):
+	task_message = reminders_menu(menu_id)
+	#return redirect('menu:view', menu_id=menu.id)
+	
 @login_required
 def option_create(request,menu_id):
 	menu = get_object_or_404(Menu, id = menu_id)
@@ -49,6 +59,7 @@ def option_create(request,menu_id):
 	else:
 		form = OptionCreateForm()
 	return render(request,'option/create.html',{'form': form})
+
 @login_required
 def option_update(request,option_id):
 	option = get_object_or_404(Option, id = option_id)
@@ -62,6 +73,7 @@ def option_update(request,option_id):
 	else:
 		context = {'form': form}
 	return render(request,'option/update.html',{'form': form})
+
 @login_required
 def option_delete(request,option_id):
 	option = get_object_or_404(Option, id = option_id)
