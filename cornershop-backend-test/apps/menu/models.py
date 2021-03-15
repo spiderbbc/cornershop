@@ -36,8 +36,8 @@ class Menu(models.Model):
 
 	def get_template_menu(self):
 		template = ''
-		url = '<http://127.0.0.1:8000/menu/%s>' % self.uuid
 		if self.options.count():
+			url = '<http://127.0.0.1:8000/menu/%s>' % self.uuid
 			template += url
 			template += "\n\n Hello! I share with you today's menu :) \n\n"
 			for index, option in enumerate(self.options.all()):
