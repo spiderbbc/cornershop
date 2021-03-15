@@ -28,7 +28,22 @@ class Menu(models.Model):
 	def is_can_be_ordered(self):
 		today_date = datetime.now()
 		today_time = time(today_date.hour, today_date.minute, today_date.second)
-		return  True if today_time.hour <= 10 and today_time.minute <= 60 else False	
+		return  True if today_time.hour <= 10 and today_time.minute <= 60 else False
+
+	def is_today_menu(self):
+		date_of_today = datetime.today().date()
+		return  True if self.start_on == date_of_today  else False	
+
+	def get_template_menu(self):
+		template = ''
+		url = '<http://127.0.0.1:8000/menu/%s>' % self.uuid
+		if self.options.count():
+			template += url
+			template += "\n\n Hello! I share with you today's menu :) \n\n"
+			for index, option in enumerate(self.options.all()):
+				template += "%s Option: %s \n" % (index + 1,option.description) 	
+			template += "\n\nHave a nice day!\n\n"
+		return template			
 		
 class Option(models.Model):
 	"""docstring for Option"""

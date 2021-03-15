@@ -1,5 +1,6 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Menu,Option
 from .forms import MenuCreateForm,OptionCreateForm
 from .tasks import reminders_menu
@@ -43,8 +44,9 @@ def menu_update(request,menu_id):
 
 @login_required
 def menu_reminders(request,menu_id):
-	task_message = reminders_menu(menu_id)
-	#return redirect('menu:view', menu_id=menu.id)
+	slack_messages = reminders_menu.delay(menu_id)
+	messages.add_message(request, messages.INFO, 'Slack reminder sent to employees')
+	return redirect('menu:view', menu_id=menu_id)
 	
 @login_required
 def option_create(request,menu_id):

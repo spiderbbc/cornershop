@@ -40,7 +40,7 @@
 				  	{% if menu.options.count %}
 				  		{% for option in menu.options.all %}
 						    <tr>
-						      <th scope="row">{{option.id}}</th>
+						      <th scope="row">{{forloop.counter}}</th>
 						      <td>{{option.description}}</td>
 						    </tr>
 				    	{% endfor %}
