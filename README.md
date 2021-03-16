@@ -1,5 +1,17 @@
 # Cornershop's Backend Test 
 
+:eye: Crear usuario nora para el login con : 
+
+-  python manage.py createsuperuser
+
+:eye: Añadir variable de entorno link al [recurso](https://paper.dropbox.com/doc/Variables-de-entorno--BG90z1f5r13wXgVloxRP3F8dAQ-TWoMd7WsvYtLULab5tIXD)
+
+​	 
+
+### Video demo [link](https://youtu.be/0k79348-hPg)
+
+
+
 This technical test requires the design and implementation (using Django and Celery) of a management system to coordinate the meal delivery for Cornershop employees.
 
 We provide a nice boilerplate project with Django and Celery up and running so you can use your time more wisely.
