@@ -17,11 +17,13 @@ def order_create(request,menu_uuid):
 			return redirect('order:order_create', menu_uuid=menu_uuid)
 				
 	return render(request,'order/order.html',{'menu':menu,'form':form})
+
 @login_required
 def order_list(request):
 	user_id = request.user.id
 	orders = Order.objects.filter(option__menu__user_id = user_id)
 	return render(request,'order/list.html',{'orders':orders})
+
 @login_required
 def order_view(request,order_id):
 	order = get_object_or_404(Order,pk= order_id)

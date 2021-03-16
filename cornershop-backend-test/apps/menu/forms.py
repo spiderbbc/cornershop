@@ -4,7 +4,7 @@ from django.forms.fields import DateField
 from .models import Menu,Option
 
 class MenuCreateForm(forms.ModelForm):
-	"""docstring for MenuCreateForm"""
+	"""MenuCreateForm: create and update form to Menu"""
 	def clean_start_on(self):
 		start_on = self.cleaned_data['start_on']
 		today = date.today()
@@ -20,7 +20,7 @@ class MenuCreateForm(forms.ModelForm):
 		}
 
 class OptionCreateForm(forms.ModelForm):
-
+	"""OptionCreateForm: create and update form to Order"""
 	description = forms.CharField(max_length=100)
 	class Meta:
 		model = Option

@@ -1,5 +1,15 @@
 ## cornershop-backend-test
 
+:eye: Crear usuario nora para el login con : 
+
+-  python manage.py createsuperuser
+
+:eye: Añadir variable de entorno link al [recurso](https://paper.dropbox.com/doc/Variables-de-entorno--BG90z1f5r13wXgVloxRP3F8dAQ-TWoMd7WsvYtLULab5tIXD)
+
+​	 
+
+### Video demo [link](
+
 ### Running the development environment
 
 * `make up`

@@ -23,8 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = getenv("SECRET_KEY", default="###SECRET_KEY###")
 
-#DEBUG = getenv("DEBUG", default=False, coalesce=bool)
-DEBUG = True
+DEBUG = getenv("DEBUG", default=False, coalesce=bool)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -96,7 +95,7 @@ DATABASES = {
         "NAME": getenv("POSTGRES_DEFAULT_DB", default="postgres"),
         "USER": getenv("POSTGRES_DEFAULT_USER", default="postgres"),
         "PASSWORD": getenv("POSTGRES_DEFAULT_PASSWORD", default="postgres"),
-        "HOST": getenv("POSTGRES_DEFAULT_HOSTNAME", default="localhost"),
+        "HOST": getenv("POSTGRES_DEFAULT_HOSTNAME", default="postgres"),
         "PORT": 5432,
         "CONN_MAX_AGE": 600,
         "DISABLE_SERVER_SIDE_CURSORS": True,
@@ -240,3 +239,16 @@ LOGGING = {
         },
     },
 }
+
+# Internationalization
+# https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+LANGUAGE_CODE = "en-us"
+
+TIME_ZONE = "America/Santiago"
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True

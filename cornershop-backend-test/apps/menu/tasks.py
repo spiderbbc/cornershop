@@ -1,9 +1,8 @@
-from celery import task,shared_task
+from celery import task
 from backend_test.utils.slack import users_list,reminders_add
 from .models import Menu
 
 
-#@shared_task 
 @task(trail=True) 
 def reminders_menu(menu_id):
 	"""Task to send an slack reminders when an menu have options to send."""

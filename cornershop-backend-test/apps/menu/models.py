@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 class Menu(models.Model):
-	"""docstring for Menu"""
+	"""Models Menu"""
 	user = models.ForeignKey(User, related_name='users',on_delete=models.CASCADE)
 	uuid = models.UUIDField(default=uuid.uuid4,db_index=True, editable=False, unique=True)
 	name = models.CharField(max_length=200, db_index=True)
@@ -26,15 +26,18 @@ class Menu(models.Model):
 		return '{}: {}'.format(self.name,self.start_on)
 
 	def is_can_be_ordered(self):
+		"""is_can_be_ordered return boolean if the current time is greater than 11 AM CLT"""
 		today_date = datetime.now()
 		today_time = time(today_date.hour, today_date.minute, today_date.second)
 		return  True if today_time.hour <= 10 and today_time.minute <= 60 else False
 
 	def is_today_menu(self):
+		"""is_today_menu return boolean if the menu is create today based with start_on property"""
 		date_of_today = datetime.today().date()
 		return  True if self.start_on == date_of_today  else False	
 
 	def get_template_menu(self):
+		"""get_template_menu return string template for reminder slack"""
 		template = ''
 		if self.options.count():
 			url = '<http://127.0.0.1:8000/menu/%s>' % self.uuid
@@ -46,7 +49,7 @@ class Menu(models.Model):
 		return template			
 		
 class Option(models.Model):
-	"""docstring for Option"""
+	"""Models Options"""
 	menu = models.ForeignKey(Menu, related_name='options',on_delete=models.CASCADE)
 	description = models.CharField(max_length=200)
 	created = models.DateTimeField(auto_now_add=True)

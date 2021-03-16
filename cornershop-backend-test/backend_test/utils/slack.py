@@ -1,11 +1,11 @@
 import os
 from datetime import datetime
 from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
 
 client = WebClient(token=os.environ['SLACK_BOT_TOKEN'])
 
 def users_list():
+	""" users_list return a list users on slack"""
 	all_users = []
 	new_results = True
 	next_cursor = ""
@@ -26,6 +26,7 @@ def users_list():
 	return users
 
 def reminders_add(users_list,text,time_reminder):
+	""" reminders_add loop the user a send reminders / messages only register for celery status"""
 	messages = []
 	for user in users_list:
 		response = client.reminders_add(text=text,time=time_reminder,user = user['id'])
